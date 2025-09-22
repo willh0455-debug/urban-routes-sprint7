@@ -1,4 +1,3 @@
-nano data.py
 URBAN_ROUTES_URL = ''  # paste the server URL here before running tests
 
 ADDRESS_FROM = 'East 2nd Street, 601'
