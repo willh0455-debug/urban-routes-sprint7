@@ -1,5 +1,12 @@
-.venv/
 __pycache__/
-*.pyc
-.idea/
+*.py[cod]
+*.pyo
+*.egg-info/
+.build/
+dist/
+.python-version
+.venv/
+venv/
+.pytest_cache/
 .vscode/
+.idea/
