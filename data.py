@@ -1,14 +1,16 @@
-URBAN_ROUTES_URL = "https://example.com"
-BASE_URL = URBAN_ROUTES_URL
-ADDRESS_FROM = "East 2nd Street, 601"
-ADDRESS_TO = "South Springs, 12"
-PHONE_NUMBER = "+15055550100"
-CARD_NUMBER = "1234 5678 9012 3456"
-CARD_CODE = "123"
-CARD_OWNER = "WILL HOWARD"
-COMMENT_TEXT = "Please call when outside."
-BLANKET = True
-HANDKERCHIEFS_QTY = 1
-ICE_CREAM_COUNT = 2
-CAR_MODEL_QUERY = "Tesla"
+"""
+data.py — Sprint 7 test data (exact names/values per Task 2)
+"""
+# Required URL constant (empty until you start a fresh server):
+URBAN_ROUTES_URL = ''
+
+# Exact constants & values per instructions:
+ADDRESS_FROM = 'East 2nd Street, 601'
+ADDRESS_TO   = '1300 1st St'
+PHONE_NUMBER = '+1 123 123 12 12'
+CARD_NUMBER  = '1234 5678 9100'
+CARD_CODE    = '1111'
+MESSAGE_FOR_DRIVER = 'Stop at the juice bar, please'
+
+# (Optional extras kept for compatibility with any earlier tests)
 TIMEOUT_SECONDS = 5
