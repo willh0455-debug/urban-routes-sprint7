@@ -3,6 +3,7 @@ main.py — Sprint 7 scaffolding
 - Contains a Pytest-style class with stubbed tests for Sprint 8
 - Checks the server once in setup_class using helpers.is_url_reachable
 """
+
 import data
 from helpers import is_url_reachable
 
@@ -15,7 +16,9 @@ class TestUrbanRoutes:
         if url and is_url_reachable(url):
             print("Connected to the Urban Routes server")
         else:
-            print("Cannot connect to Urban Routes. Check the server is on and still running")
+            print(
+                "Cannot connect to Urban Routes. Check the server is on and still running"
+            )
 
     # ---- Task 3: 8 placeholder tests (prep for Sprint 8) ----
     def test_set_route(self):
