@@ -1,4 +1,3 @@
-import data
 ""
 main.py — Sprint 7 scaffolding
 - Contains a Pytest-style class with stubbed tests for Sprint 8
