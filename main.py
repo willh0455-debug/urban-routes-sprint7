@@ -1,4 +1,5 @@
-"""
+import data
+""
 main.py — Sprint 7 scaffolding
 - Contains a Pytest-style class with stubbed tests for Sprint 8
 - Checks the server once in setup_class using helpers.is_url_reachable
