@@ -1,7 +1,7 @@
 # This file stores test data constants for Project 7
 
 # URL of the Urban Routes app (for now, empty string until we start the server)
-URBAN_ROUTES_URL = 'https://cnt-cb4f1fcc-717b-4cfc-8cd0-3594768285ff.containerhub.tripleten-services.com/
+URBAN_ROUTES_URL = 'https://cnt-5b691a28-1d7c-4ff2-a427-4a2c423006b1.containerhub.tripleten-services.com/'
 
 # Test data constants
 ADDRESS_FROM = 'East 2nd Street, 601'
