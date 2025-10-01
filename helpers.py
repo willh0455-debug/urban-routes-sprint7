@@ -1,62 +1,52 @@
-"""
-helpers.py — Sprint 7 stubs (Selenium added in Sprint 8)
-"""
+# Retrieves Phone code. Do not change
+# File should be completely unchanged
 
-from typing import Any, Optional
-from urllib.request import urlopen, Request
-from urllib.error import URLError, HTTPError
+def retrieve_phone_code(driver) -> str:
+    """This code retrieves phone confirmation number and returns it as a string.
+    Use it when application waits for the confirmation code to pass it into your tests.
+    The phone confirmation code can only be obtained after it was requested in application."""
 
-
-def is_url_reachable(url: str, timeout: int = 5) -> bool:
-    try:
+    import json
+    import time
+    from selenium.common import WebDriverException
+    code = None
+    for i in range(10):
         try:
-            req = Request(url, method="HEAD")
-            with urlopen(req, timeout=timeout) as resp:
-                status = getattr(resp, "status", 200)
-                return 200 <= status < 400
-        except HTTPError as e:
-            if getattr(e, "code", None) in (405, 501):
-                req = Request(url, method="GET")
-                with urlopen(req, timeout=timeout) as resp:
-                    status = getattr(resp, "status", 200)
-                    return 200 <= status < 400
-            return False
-    except (HTTPError, URLError, ValueError):
-        return False
-    except Exception:
-        return False
+            logs = [log["message"] for log in driver.get_log('performance') if log.get("message")
+                    and 'api/v1/number?number' in log.get("message")]
+            for log in reversed(logs):
+                message_data = json.loads(log)["message"]
+                body = driver.execute_cdp_cmd('Network.getResponseBody',
+                                              {'requestId': message_data["params"]["requestId"]})
+                code = ''.join([x for x in body['body'] if x.isdigit()])
+        except WebDriverException:
+            time.sleep(1)
+            continue
+        if not code:
+            raise Exception("No phone confirmation code found.\n"
+                            "Please use retrieve_phone_code only after the code was requested in your application.")
+        return code
 
+# Checks if Routes is up and running. Do not change
+def is_url_reachable(url):
+    """Check if the URL can be reached. Pass the URL for Urban Routes as a parameter.
+    If it can be reached, it returns True, otherwise it returns False"""
 
-# 8 Sprint-7 helper stubs (names mirror common tests)
-def set_route(from_address: str, to_address: str) -> None:
-    pass
+    import ssl
+    import urllib.request
 
+    try:
+        ssl_ctx = ssl.create_default_context()
+        ssl_ctx.check_hostname = False
+        ssl_ctx.verify_mode = ssl.CERT_NONE
 
-def select_plan(plan_name: str) -> None:
-    pass
+        with urllib.request.urlopen(url, context=ssl_ctx) as response:
+            # print("Response Status Code:", response.status) #for debugging purposes
+            if response.status == 200:
+                 return True
+            else:
+                return False
+    except Exception as e:
+        print (e)
 
-
-def fill_phone_number(phone_number: str) -> None:
-    pass
-
-
-def fill_card(card_number: str, card_code: str, card_owner: str = "") -> None:
-    pass
-
-
-def comment_for_driver(comment: str) -> None:
-    pass
-
-
-def order_blanket_and_handkerchiefs(
-    blanket: bool = True, handkerchiefs: int = 1
-) -> None:
-    pass
-
-
-def order_2_ice_creams() -> None:
-    pass
-
-
-def car_search_model_appears(model_query: str) -> bool:
-    return True
+    return False
